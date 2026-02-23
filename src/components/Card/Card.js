@@ -18,15 +18,23 @@ const Card = ({ id, title, description, genre, like, favorite }) => {
     <div className="Card">
       <div className="Card__header">
         <h2 className="Card__header__title">{bookTitle}</h2>
-        <button className="Card__header__favorite" onClick={handleFavorite}>
-          {bookFavorite && "validate"}
+        <button className={bookFavorite && "favorite"} onClick={handleFavorite}>
+          <ion-icon name="heart"></ion-icon>
         </button>
       </div>
       <label className="Card__genre">{bookGenre}</label>
-      <p className="Card__description">{bookDescription}</p>
-      <div>
-        <label className="Card__like">{bookLike}</label>
-        <button onClick={handleLike}>Like</button>
+      <div className="Card__description">
+        <p className="Card__description__text">Description du livre : </p>
+        <p>{bookDescription}</p>
+      </div>
+      <div className="Card__like">
+        <label className="Card__like__text">
+          <span>Nombre de Likes : </span>
+          {bookLike} Likes
+        </label>
+        <button className="Card__like__btn" onClick={handleLike}>
+          Like <ion-icon name="thumbs-up"></ion-icon>
+        </button>
       </div>
     </div>
   );

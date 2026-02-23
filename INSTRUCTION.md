@@ -6,14 +6,14 @@ Créer une application de gestion de bibliothèque personnelle en ReactJS avec R
 
 ## Structure de l'application
 
-### Routes
+### Routes (check)
 
 | Route | Page | Description |
 |-------|------|-------------|
 | `/` | Accueil | Liste de tous les livres disponibles |
 | `/profile` | Profile | Liste des livres mis en favoris |
 
-### Données d'un livre
+### Données d'un livre (check)
 
 Chaque livre possède les propriétés suivantes :
 
@@ -32,11 +32,11 @@ Chaque livre possède les propriétés suivantes :
 
 ### Page Accueil
 
-- Afficher la liste complète des livres
+- Afficher la liste complète des livres (check)
 - Filtrer les livres par genre (select ou boutons)
 - Rechercher un livre par son nom (barre de recherche)
-- Pouvoir ajouter/retirer un livre des favoris
-- Pouvoir liker un livre
+- Pouvoir ajouter/retirer un livre des favoris (check)
+- Pouvoir liker un livre (check)
 
 ### Page Profile
 
@@ -47,11 +47,11 @@ Chaque livre possède les propriétés suivantes :
 
 ## Contraintes techniques
 
-- Utiliser React Router pour la navigation
+- Utiliser React Router pour la navigation (check)
 - Utiliser `useState` pour la gestion de l'état
 - Les filtres (genre + recherche) doivent pouvoir se combiner
 
-## Données de test
+## Données de test (check)
 
 Utilisez ce jeu de données pour démarrer :
 
@@ -83,8 +83,8 @@ Sauvegarder la liste des favoris dans le `localStorage` pour qu'elle persiste ap
 
 ## Critères d'évaluation
 
-- [ ] Les deux routes fonctionnent correctement
-- [ ] L'affichage des livres est fonctionnel
+- [x] Les deux routes fonctionnent correctement
+- [x] L'affichage des livres est fonctionnel
 - [ ] Le filtre par genre fonctionne
 - [ ] La recherche par nom fonctionne
 - [ ] Les filtres se combinent correctement

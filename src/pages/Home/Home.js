@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
 import Card from "../../components/Card/Card";
+import Header from "../../components/Header/Header";
+import "./Home.scss";
 
 const books = [
   {
@@ -81,8 +82,8 @@ const Home = () => {
 
   return (
     <div classtitle="Home">
-      <div>{bookList}</div>
-      <Link to="/profil">Go to profil</Link>
+      <Header />
+      <div className="bookList">{bookList}</div>
     </div>
   );
 };

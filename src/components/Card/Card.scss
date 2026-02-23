@@ -1,3 +1,63 @@
+@use "../../style/abstract/shared"as *;
+
 .Card {
-    background: pink;
+    width: 60%;
+    height: auto;
+    @include marge(2rem, 2rem);
+    @include border ($primary, none, 4px, 1rem, $white);
+    background: $secondary;
+
+    &__header {
+        @include flex(row, space-between, center);
+
+        @include margin(.4rem, 1rem);
+
+        &__title {
+            color: $primary;
+            text-decoration: underline;
+        }
+
+        & ion-icon {
+            font-size: 24px;
+            color: $white;
+        }
+    }
+
+    &__genre {
+        @include border($white, $primary, 2px, 1rem, $white);
+        @include padding(.2rem, .2rem, 1rem, 1rem)
+    }
+
+    &__description {
+        @include margin (1rem, 1rem);
+
+        &__text {
+            font-weight: 600;
+            text-decoration: underline dotted $primary;
+        }
+    }
+
+    &__like {
+        @include flex(row, space-between);
+
+        &__text span {
+            font-weight: 600;
+            text-decoration: underline dotted $primary;
+        }
+
+        &__btn {
+            width: 6rem;
+            height: auto;
+            font-size: 20px;
+            @include border($primary, $white, 2px, 1rem, $primary);
+            @include flex(row, space-around, start, 1rem);
+            @include padding(.4rem, .4rem, .8rem, .8rem)
+        }
+    }
+
+
+}
+
+.favorite ion-icon {
+    color: $primary;
 }

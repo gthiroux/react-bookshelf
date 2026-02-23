@@ -1,0 +1,58 @@
+@use "./variables"as *;
+
+@mixin reset() {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    border: none;
+    background: none;
+}
+
+@mixin typo-body () {
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+        "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin typo-code() {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+
+}
+
+@mixin flex($direction:row, $justify:start, $align:start, $gap:0) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $gap;
+}
+
+@mixin marge($margin:0, $padding:0) {
+    margin: $margin;
+    padding: $padding;
+}
+
+@mixin margin($top:0, $bottom:0, $left:0, $right:0) {
+    margin-top: $top;
+    margin-bottom: $bottom;
+    margin-left: $left;
+    margin-right: $right;
+}
+
+@mixin padding($top:0, $bottom:0, $left:0, $right:0) {
+    padding-top: $top;
+    padding-bottom: $bottom;
+    padding-left: $left;
+    padding-right: $right;
+}
+
+@mixin border($color-border:none, $background:none, $weight:0, $radius:0, $color:none) {
+    border: solid $weight $color-border;
+    background: $background;
+    border-radius: $radius;
+    color: $color;
+}

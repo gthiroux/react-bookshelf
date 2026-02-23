@@ -1,0 +1,7 @@
+@use "../../style/abstract/shared"as *;
+
+.bookList {
+    width: 100%;
+    height: auto;
+    @include flex(column, center, center)
+}
