@@ -1,6 +1,8 @@
 import Card from "../../components/Card/Card";
-import Header from "../../components/Header/Header";
+// import Header from "../../components/Header/Header";
 import "./Home.scss";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const books = [
   {
@@ -68,7 +70,29 @@ const books = [
     favorite: false,
   },
 ];
+
 const Home = () => {
+  const [favoriteBook, setFavoriteBook] = useState([]);
+
+  const favorite = (id, isFavorite) => {
+    // check if the heart is true or false; if it's true you add the book in the favoriteBook array, else you delete from the favoriteBook array
+    if (isFavorite) {
+      // search the book with the good id in the array books and keep the book's information
+      const newFavorite = books.find((book) => book.id === id);
+      // copy the array favoriteBook and copy the information of the book to add and modif the key:value favorite
+      setFavoriteBook((lastList) => [
+        ...lastList,
+        { ...newFavorite, favorite: true },
+      ]);
+    } else {
+      setFavoriteBook((lastList) => lastList.filter((book) => book.id !== id));
+    }
+
+    console.log("good favorite");
+    console.log(favoriteBook);
+  };
+
+  // Loop to display the books
   const bookList = books.map((book) => (
     <Card
       id={book.id}
@@ -77,12 +101,20 @@ const Home = () => {
       genre={book.genre}
       like={book.like}
       favorite={book.favorite}
+      onFavorite={(newFavorite) => favorite(book.id, newFavorite)}
     />
   ));
 
   return (
     <div classtitle="Home">
-      <Header />
+      <header className="header">
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/profil" state={{ favoriteBook }}>
+            Profil
+          </Link>
+        </nav>
+      </header>
       <div className="bookList">{bookList}</div>
     </div>
   );

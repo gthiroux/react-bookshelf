@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import "./Header.scss";
 
-const Header = () => {
+const Header = ({ state }) => {
   return (
     <header className="Header">
       <nav>
         <Link to="/">Home</Link>
-        <Link to="/profil">Profil</Link>
+        <Link to="/profil" state={{ state }}>
+          Profil
+        </Link>
       </nav>
     </header>
   );

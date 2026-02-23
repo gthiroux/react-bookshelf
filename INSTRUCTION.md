@@ -8,10 +8,10 @@ Créer une application de gestion de bibliothèque personnelle en ReactJS avec R
 
 ### Routes (check)
 
-| Route | Page | Description |
-|-------|------|-------------|
-| `/` | Accueil | Liste de tous les livres disponibles |
-| `/profile` | Profile | Liste des livres mis en favoris |
+| Route      | Page    | Description                          |
+| ---------- | ------- | ------------------------------------ |
+| `/`        | Accueil | Liste de tous les livres disponibles |
+| `/profile` | Profile | Liste des livres mis en favoris      |
 
 ### Données d'un livre (check)
 
@@ -40,15 +40,15 @@ Chaque livre possède les propriétés suivantes :
 
 ### Page Profile
 
-- Afficher uniquement les livres marqués en favoris
+- Afficher uniquement les livres marqués en favoris (check)
 - Filtrer les favoris par genre
 - Rechercher parmi les favoris par nom
-- Pouvoir retirer un livre des favoris
+- Pouvoir retirer un livre des favoris (check)
 
 ## Contraintes techniques
 
 - Utiliser React Router pour la navigation (check)
-- Utiliser `useState` pour la gestion de l'état
+- Utiliser `useState` pour la gestion de l'état (check)
 - Les filtres (genre + recherche) doivent pouvoir se combiner
 
 ## Données de test (check)
@@ -57,14 +57,70 @@ Utilisez ce jeu de données pour démarrer :
 
 ```js
 const livresInitiaux = [
-  { id: 1, nom: "Le Seigneur des Anneaux", description: "Une épopée fantastique en Terre du Milieu", genre: "Fantasy", like: 150, favorite: false },
-  { id: 2, nom: "1984", description: "Un roman dystopique sur la surveillance de masse", genre: "Science-Fiction", like: 89, favorite: false },
-  { id: 3, nom: "Orgueil et Préjugés", description: "Une histoire d'amour dans l'Angleterre du 19e siècle", genre: "Romance", like: 67, favorite: false },
-  { id: 4, nom: "Dune", description: "Une saga de science-fiction sur la planète Arrakis", genre: "Science-Fiction", like: 120, favorite: false },
-  { id: 5, nom: "Harry Potter", description: "Les aventures d'un jeune sorcier", genre: "Fantasy", like: 200, favorite: false },
-  { id: 6, nom: "Sherlock Holmes", description: "Les enquêtes du célèbre détective", genre: "Policier", like: 95, favorite: false },
-  { id: 7, nom: "Le Petit Prince", description: "Un conte poétique et philosophique", genre: "Conte", like: 180, favorite: false },
-  { id: 8, nom: "Fondation", description: "Le déclin d'un empire galactique", genre: "Science-Fiction", like: 75, favorite: false }
+  {
+    id: 1,
+    nom: "Le Seigneur des Anneaux",
+    description: "Une épopée fantastique en Terre du Milieu",
+    genre: "Fantasy",
+    like: 150,
+    favorite: false,
+  },
+  {
+    id: 2,
+    nom: "1984",
+    description: "Un roman dystopique sur la surveillance de masse",
+    genre: "Science-Fiction",
+    like: 89,
+    favorite: false,
+  },
+  {
+    id: 3,
+    nom: "Orgueil et Préjugés",
+    description: "Une histoire d'amour dans l'Angleterre du 19e siècle",
+    genre: "Romance",
+    like: 67,
+    favorite: false,
+  },
+  {
+    id: 4,
+    nom: "Dune",
+    description: "Une saga de science-fiction sur la planète Arrakis",
+    genre: "Science-Fiction",
+    like: 120,
+    favorite: false,
+  },
+  {
+    id: 5,
+    nom: "Harry Potter",
+    description: "Les aventures d'un jeune sorcier",
+    genre: "Fantasy",
+    like: 200,
+    favorite: false,
+  },
+  {
+    id: 6,
+    nom: "Sherlock Holmes",
+    description: "Les enquêtes du célèbre détective",
+    genre: "Policier",
+    like: 95,
+    favorite: false,
+  },
+  {
+    id: 7,
+    nom: "Le Petit Prince",
+    description: "Un conte poétique et philosophique",
+    genre: "Conte",
+    like: 180,
+    favorite: false,
+  },
+  {
+    id: 8,
+    nom: "Fondation",
+    description: "Le déclin d'un empire galactique",
+    genre: "Science-Fiction",
+    like: 75,
+    favorite: false,
+  },
 ];
 ```
 
@@ -88,8 +144,8 @@ Sauvegarder la liste des favoris dans le `localStorage` pour qu'elle persiste ap
 - [ ] Le filtre par genre fonctionne
 - [ ] La recherche par nom fonctionne
 - [ ] Les filtres se combinent correctement
-- [ ] L'ajout/retrait des favoris fonctionne
-- [ ] Le code est propre et organisé en composants
+- [x] L'ajout/retrait des favoris fonctionne
+- [x] Le code est propre et organisé en composants
 
 ## Livrables
 

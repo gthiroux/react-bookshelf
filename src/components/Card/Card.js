@@ -1,7 +1,15 @@
 import { useState } from "react";
 import "./Card.scss";
 
-const Card = ({ id, title, description, genre, like, favorite }) => {
+const Card = ({
+  id,
+  title,
+  description,
+  genre,
+  like,
+  favorite,
+  onFavorite,
+}) => {
   const [bookTitle] = useState(title);
   const [bookDescription] = useState(description);
   const [bookGenre] = useState(genre);
@@ -10,15 +18,19 @@ const Card = ({ id, title, description, genre, like, favorite }) => {
 
   function handleFavorite() {
     setFavorite(!bookFavorite);
+    onFavorite(!bookFavorite);
   }
   function handleLike() {
     setLike(bookLike + 1);
   }
   return (
-    <div className="Card">
+    <div className="Card" id={id}>
       <div className="Card__header">
         <h2 className="Card__header__title">{bookTitle}</h2>
-        <button className={bookFavorite && "favorite"} onClick={handleFavorite}>
+        <button
+          className={bookFavorite ? "favorite" : ""}
+          onClick={handleFavorite}
+        >
           <ion-icon name="heart"></ion-icon>
         </button>
       </div>
