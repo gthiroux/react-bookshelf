@@ -21,6 +21,10 @@
             font-size: 24px;
             color: $white;
         }
+
+        & .favorite ion-icon {
+            color: $primary;
+        }
     }
 
     &__genre {
@@ -56,8 +60,4 @@
     }
 
 
-}
-
-.favorite ion-icon {
-    color: $primary;
 }

@@ -71,39 +71,79 @@ const books = [
   },
 ];
 
-const Home = () => {
-  const [favoriteBook, setFavoriteBook] = useState([]);
+const Home = ({ favoriteBook, setFavoriteBook }) => {
+  // * creation of the favorite book's array
+  // const { state } = useLocation();
+  // const [favoriteBook, setFavoriteBook] = useState(
+  //   state.favoriteBook ? state.favoriteBook : [],
+  // );
 
   const favorite = (id, isFavorite) => {
-    // check if the heart is true or false; if it's true you add the book in the favoriteBook array, else you delete from the favoriteBook array
+    // ?check if the heart is true or false; if it's true you add the book in the favoriteBook array, else you delete from the favoriteBook array
     if (isFavorite) {
-      // search the book with the good id in the array books and keep the book's information
+      //? search the book with the good id in the array books and keep the book's information
       const newFavorite = books.find((book) => book.id === id);
-      // copy the array favoriteBook and copy the information of the book to add and modif the key:value favorite
+      //? copy the array favoriteBook and copy the information of the book to add and modif the key:value favorite
       setFavoriteBook((lastList) => [
         ...lastList,
         { ...newFavorite, favorite: true },
       ]);
     } else {
+      // ? delete a book in favoriteBook's array
       setFavoriteBook((lastList) => lastList.filter((book) => book.id !== id));
     }
-
-    console.log("good favorite");
-    console.log(favoriteBook);
   };
 
-  // Loop to display the books
-  const bookList = books.map((book) => (
-    <Card
-      id={book.id}
-      title={book.title}
-      description={book.description}
-      genre={book.genre}
-      like={book.like}
-      favorite={book.favorite}
-      onFavorite={(newFavorite) => favorite(book.id, newFavorite)}
-    />
-  ));
+  // * search input
+  const [searchWord, setSearchWord] = useState("");
+  const [searchList, setSearchList] = useState([]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchWord !== "") {
+      // searchWord.toLowerCase();
+      const result = books.filter((book) =>
+        book.title.toLocaleLowerCase().includes(searchWord.toLowerCase()),
+      );
+      setSearchList(result);
+      setSearchWord("");
+    }
+  };
+  //?Loop to display the books
+  const searchBook = searchList.map((book) => {
+    const idFavoriteBook = favoriteBook.map((fav) => fav.id);
+    const isFavorite = idFavoriteBook.includes(book.id);
+    return (
+      <Card
+        key={book.id}
+        id={book.id}
+        title={book.title}
+        description={book.description}
+        genre={book.genre}
+        like={book.like}
+        favorite={isFavorite}
+        onFavorite={(newFavorite) => favorite(book.id, newFavorite)}
+      />
+    );
+  });
+
+  //*Loop to display the books
+  const bookList = books.map((book) => {
+    const idFavoriteBook = favoriteBook.map((fav) => fav.id);
+    const isFavorite = idFavoriteBook.includes(book.id);
+    return (
+      <Card
+        key={book.id}
+        id={book.id}
+        title={book.title}
+        description={book.description}
+        genre={book.genre}
+        like={book.like}
+        favorite={isFavorite}
+        onFavorite={(newFavorite) => favorite(book.id, newFavorite)}
+      />
+    );
+  });
 
   return (
     <div classtitle="Home">
@@ -114,8 +154,25 @@ const Home = () => {
             Profil
           </Link>
         </nav>
+        <form className="hearder__search" onSubmit={handleSearch}>
+          <input
+            type="search"
+            id="search"
+            name="q"
+            placeholder="Rechercher votre livre"
+            onChange={(e) => {
+              setSearchWord(e.target.value);
+              if (e.target.value === "") {
+                setSearchList([]);
+              }
+            }}
+          ></input>
+          <button type="submit"> Rechercher</button>
+        </form>
       </header>
-      <div className="bookList">{bookList}</div>
+      <div className="bookList">
+        {searchList.length > 0 ? searchBook : bookList}
+      </div>
     </div>
   );
 };

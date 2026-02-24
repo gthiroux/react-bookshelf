@@ -10,15 +10,10 @@ const Card = ({
   favorite,
   onFavorite,
 }) => {
-  const [bookTitle] = useState(title);
-  const [bookDescription] = useState(description);
-  const [bookGenre] = useState(genre);
   const [bookLike, setLike] = useState(like);
-  const [bookFavorite, setFavorite] = useState(favorite);
 
   function handleFavorite() {
-    setFavorite(!bookFavorite);
-    onFavorite(!bookFavorite);
+    onFavorite(!favorite);
   }
   function handleLike() {
     setLike(bookLike + 1);
@@ -26,18 +21,15 @@ const Card = ({
   return (
     <div className="Card" id={id}>
       <div className="Card__header">
-        <h2 className="Card__header__title">{bookTitle}</h2>
-        <button
-          className={bookFavorite ? "favorite" : ""}
-          onClick={handleFavorite}
-        >
+        <h2 className="Card__header__title">{title}</h2>
+        <button className={favorite ? "favorite" : ""} onClick={handleFavorite}>
           <ion-icon name="heart"></ion-icon>
         </button>
       </div>
-      <label className="Card__genre">{bookGenre}</label>
+      <label className="Card__genre">{genre}</label>
       <div className="Card__description">
         <p className="Card__description__text">Description du livre : </p>
-        <p>{bookDescription}</p>
+        <p>{description}</p>
       </div>
       <div className="Card__like">
         <label className="Card__like__text">
