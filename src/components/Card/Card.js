@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./Card.scss";
 
 const Card = ({
@@ -7,16 +6,15 @@ const Card = ({
   description,
   genre,
   like,
+  onLike,
   favorite,
   onFavorite,
 }) => {
-  const [bookLike, setLike] = useState(like);
-
   function handleFavorite() {
     onFavorite(!favorite);
   }
   function handleLike() {
-    setLike(bookLike + 1);
+    onLike();
   }
   return (
     <div className="Card" id={id}>
@@ -34,7 +32,7 @@ const Card = ({
       <div className="Card__like">
         <label className="Card__like__text">
           <span>Nombre de Likes : </span>
-          {bookLike} Likes
+          {like} Likes
         </label>
         <button className="Card__like__btn" onClick={handleLike}>
           Like <ion-icon name="thumbs-up"></ion-icon>

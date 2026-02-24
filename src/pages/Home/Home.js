@@ -1,83 +1,15 @@
 import Card from "../../components/Card/Card";
-// import Header from "../../components/Header/Header";
+import Header from "../../components/Header/Header";
 import "./Home.scss";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
-const books = [
-  {
-    id: 1,
-    title: "Le Seigneur des Anneaux",
-    description: "Une épopée fantastique en Terre du Milieu",
-    genre: "Fantasy",
-    like: 150,
-    favorite: false,
-  },
-  {
-    id: 2,
-    title: "1984",
-    description: "Un roman dystopique sur la surveillance de masse",
-    genre: "Science-Fiction",
-    like: 89,
-    favorite: false,
-  },
-  {
-    id: 3,
-    title: "Orgueil et Préjugés",
-    description: "Une histoire d'amour dans l'Angleterre du 19e siècle",
-    genre: "Romance",
-    like: 67,
-    favorite: false,
-  },
-  {
-    id: 4,
-    title: "Dune",
-    description: "Une saga de science-fiction sur la planète Arrakis",
-    genre: "Science-Fiction",
-    like: 120,
-    favorite: false,
-  },
-  {
-    id: 5,
-    title: "Harry Potter",
-    description: "Les aventures d'un jeune sorcier",
-    genre: "Fantasy",
-    like: 200,
-    favorite: false,
-  },
-  {
-    id: 6,
-    title: "Sherlock Holmes",
-    description: "Les enquêtes du célèbre détective",
-    genre: "Policier",
-    like: 95,
-    favorite: false,
-  },
-  {
-    id: 7,
-    title: "Le Petit Prince",
-    description: "Un conte poétique et philosophique",
-    genre: "Conte",
-    like: 180,
-    favorite: false,
-  },
-  {
-    id: 8,
-    title: "Fondation",
-    description: "Le déclin d'un empire galactique",
-    genre: "Science-Fiction",
-    like: 75,
-    favorite: false,
-  },
-];
+const Home = ({ books, favoriteBook, setFavoriteBook, like, onLike }) => {
+  const [searchWord, setSearchWord] = useState("");
+  const [searchList, setSearchList] = useState([]);
+  const [filterType, setFilterType] = useState("");
+  const typeList = [];
 
-const Home = ({ favoriteBook, setFavoriteBook }) => {
   // * creation of the favorite book's array
-  // const { state } = useLocation();
-  // const [favoriteBook, setFavoriteBook] = useState(
-  //   state.favoriteBook ? state.favoriteBook : [],
-  // );
-
   const favorite = (id, isFavorite) => {
     // ?check if the heart is true or false; if it's true you add the book in the favoriteBook array, else you delete from the favoriteBook array
     if (isFavorite) {
@@ -94,14 +26,21 @@ const Home = ({ favoriteBook, setFavoriteBook }) => {
     }
   };
 
-  // * search input
-  const [searchWord, setSearchWord] = useState("");
-  const [searchList, setSearchList] = useState([]);
+  // *recuperation of all type possible in the books array
+  books.forEach((book) => {
+    if (!typeList.includes(book.genre)) typeList.push(book.genre);
+  });
 
+  // *recuperation of the filter's value
+  const handleType = (e) => {
+    setFilterType(e.target.value.toLowerCase());
+    setSearchList([]);
+  };
+
+  // * treatment of the search bar
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchWord !== "") {
-      // searchWord.toLowerCase();
       const result = books.filter((book) =>
         book.title.toLocaleLowerCase().includes(searchWord.toLowerCase()),
       );
@@ -109,26 +48,15 @@ const Home = ({ favoriteBook, setFavoriteBook }) => {
       setSearchWord("");
     }
   };
-  //?Loop to display the books
-  const searchBook = searchList.map((book) => {
-    const idFavoriteBook = favoriteBook.map((fav) => fav.id);
-    const isFavorite = idFavoriteBook.includes(book.id);
-    return (
-      <Card
-        key={book.id}
-        id={book.id}
-        title={book.title}
-        description={book.description}
-        genre={book.genre}
-        like={book.like}
-        favorite={isFavorite}
-        onFavorite={(newFavorite) => favorite(book.id, newFavorite)}
-      />
-    );
-  });
 
-  //*Loop to display the books
-  const bookList = books.map((book) => {
+  // * Apply the filter on searchList if searchList isn't empty or books
+  const displayBook = (searchList.length > 0 ? searchList : books).filter(
+    (book) =>
+      filterType === "" || filterType === book.genre.toLocaleLowerCase(),
+  );
+
+  //*Loop to display all books
+  const bookList = displayBook.map((book) => {
     const idFavoriteBook = favoriteBook.map((fav) => fav.id);
     const isFavorite = idFavoriteBook.includes(book.id);
     return (
@@ -138,7 +66,8 @@ const Home = ({ favoriteBook, setFavoriteBook }) => {
         title={book.title}
         description={book.description}
         genre={book.genre}
-        like={book.like}
+        like={like[book.id]}
+        onLike={() => onLike(book.id)}
         favorite={isFavorite}
         onFavorite={(newFavorite) => favorite(book.id, newFavorite)}
       />
@@ -147,31 +76,32 @@ const Home = ({ favoriteBook, setFavoriteBook }) => {
 
   return (
     <div classtitle="Home">
-      <header className="header">
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/profil" state={{ favoriteBook }}>
-            Profil
-          </Link>
-        </nav>
-        <form className="hearder__search" onSubmit={handleSearch}>
-          <input
-            type="search"
-            id="search"
-            name="q"
-            placeholder="Rechercher votre livre"
-            onChange={(e) => {
-              setSearchWord(e.target.value);
-              if (e.target.value === "") {
-                setSearchList([]);
-              }
-            }}
-          ></input>
-          <button type="submit"> Rechercher</button>
-        </form>
-      </header>
+      <Header />
+      <form className="hearder__search" onSubmit={handleSearch}>
+        <input
+          type="search"
+          id="search"
+          name="q"
+          placeholder="Rechercher votre livre"
+          onChange={(e) => {
+            setSearchWord(e.target.value);
+            if (e.target.value === "") {
+              setSearchList([]);
+            }
+          }}
+        ></input>
+        <button type="submit"> Rechercher</button>
+      </form>
+      <select name="selectType" onChange={handleType}>
+        <option value="">Filtrer selon le genre ...</option>
+        {typeList.map((type) => (
+          <option key={type} value={type}>
+            {type}
+          </option>
+        ))}
+      </select>
       <div className="bookList">
-        {searchList.length > 0 ? searchBook : bookList}
+        {bookList.length > 0 ? bookList : "Aucun livre trouvé"}
       </div>
     </div>
   );
