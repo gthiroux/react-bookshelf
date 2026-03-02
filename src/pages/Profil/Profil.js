@@ -3,7 +3,8 @@ import Card from "../../components/Card/Card";
 import Header from "../../components/Header/Header";
 import "./Profil.scss";
 
-const Profil = ({ favoriteBook, setFavoriteBook, like, onLike }) => {
+const Profil = ({ setFavoriteBook, like, onLike }) => {
+  const favoriteBook = JSON.parse(window.localStorage.getItem("favoriteBook"));
   const typeList = [];
   const [filterType, setFilterType] = useState("");
   const [searchWord, setSearchWord] = useState("");

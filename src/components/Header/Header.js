@@ -6,9 +6,8 @@ const Header = ({ state }) => {
     <header className="Header">
       <nav>
         <Link to="/">Home</Link>
-        <Link to="/profil" state={{ state }}>
-          Profil
-        </Link>
+        <Link to="/profil">Profil</Link>
+        <Link to="/parameter">Parameter</Link>
       </nav>
     </header>
   );

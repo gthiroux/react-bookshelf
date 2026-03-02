@@ -1,7 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import "./style/base.scss";
 import Home from "./pages/Home/Home";
 import Profil from "./pages/Profil/Profil";
+import Parameter from "./pages/Parameter/Parameter";
 
 const books = [
   {
@@ -69,29 +71,41 @@ const books = [
     favorite: false,
   },
 ];
-
+const books_save = JSON.stringify(books);
+window.localStorage.setItem("books", books_save);
 const initialLikes = {};
 books.forEach((book) => {
   initialLikes[book.id] = book.like;
 });
 
 function App() {
-  const [favoriteBook, setFavoriteBook] = useState([]);
+  const [favoriteBook, setFavoriteBook] = useState(() => {
+    return JSON.parse(window.localStorage.getItem("favoriteBook")) || [];
+  });
+  useEffect(() => {
+    window.localStorage.setItem("favoriteBook", JSON.stringify(favoriteBook));
+  }, [favoriteBook]);
+
   const [like, setLike] = useState(initialLikes);
+
   const handleLike = (id) => {
     setLike((last) => ({ ...last, [id]: last[id] + 1 }));
   };
 
+  const [theme, setTheme] = useState(() => {
+    return window.localStorage.getItem("theme") || "clair";
+  });
+  useEffect(() => {
+    window.localStorage.setItem("theme", theme);
+  }, [theme]);
   return (
-    <div className="App">
+    <div className={theme}>
       <BrowserRouter>
         <Routes>
           <Route
             path="/"
             element={
               <Home
-                books={books}
-                favoriteBook={favoriteBook}
                 setFavoriteBook={setFavoriteBook}
                 like={like}
                 onLike={handleLike}
@@ -102,12 +116,15 @@ function App() {
             path="/profil"
             element={
               <Profil
-                favoriteBook={favoriteBook}
                 setFavoriteBook={setFavoriteBook}
                 like={like}
                 onLike={handleLike}
               />
             }
+          />
+          <Route
+            path="/parameter"
+            element={<Parameter theme={theme} setTheme={setTheme} />}
           />
         </Routes>
       </BrowserRouter>

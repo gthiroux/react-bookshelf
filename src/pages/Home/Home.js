@@ -3,7 +3,9 @@ import Header from "../../components/Header/Header";
 import "./Home.scss";
 import { useState } from "react";
 
-const Home = ({ books, favoriteBook, setFavoriteBook, like, onLike }) => {
+const Home = ({ setFavoriteBook, like, onLike }) => {
+  const books = JSON.parse(window.localStorage.getItem("books"));
+  const favoriteBook = JSON.parse(window.localStorage.getItem("favoriteBook"));
   const [searchWord, setSearchWord] = useState("");
   const [searchList, setSearchList] = useState([]);
   const [filterType, setFilterType] = useState("");
@@ -16,10 +18,11 @@ const Home = ({ books, favoriteBook, setFavoriteBook, like, onLike }) => {
       //? search the book with the good id in the array books and keep the book's information
       const newFavorite = books.find((book) => book.id === id);
       //? copy the array favoriteBook and copy the information of the book to add and modif the key:value favorite
-      setFavoriteBook((lastList) => [
-        ...lastList,
-        { ...newFavorite, favorite: true },
-      ]);
+      setFavoriteBook((lastList) => {
+        const updated = [...lastList, { ...newFavorite, favorite: true }];
+        window.localStorage.setItem("favoriteBook", JSON.stringify(updated));
+        return updated;
+      });
     } else {
       // ? delete a book in favoriteBook's array
       setFavoriteBook((lastList) => lastList.filter((book) => book.id !== id));
@@ -90,7 +93,7 @@ const Home = ({ books, favoriteBook, setFavoriteBook, like, onLike }) => {
                 setSearchList([]);
               }
             }}
-          ></input>
+          />
           <button type="submit"> Rechercher</button>
         </form>
         <div className="header__filter">
