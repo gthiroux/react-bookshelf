@@ -1,19 +1,38 @@
 @use "../../style/abstract/shared"as *;
 
-.header nav {
-    @include flex(row, space-around, start, 0);
-    @include marge(0, 1rem);
-    @include margin(0, 1rem);
-    width: 100%;
-    height: 5rem;
-    background-color: $primary;
-    box-shadow: 4px 4px 1rem $primary;
+.header {
+    width: 50%;
+    margin-top: 2rem;
+    justify-self: center;
+    @include flex(column, start, start);
 
+    &__search {
+        width: 100%;
+        @include flex(row, start, start, 1rem);
 
-    & a {
-        color: $white;
-        font-size: 24px;
+        // @include margin(2rem);
+        & input {
+            @include border($primary, none, 2px, 1rem);
+            width: 80%;
+            padding: .6rem;
+        }
 
+        & button {
+            @include padding(.8rem, .8rem, 1.6rem, 1.6rem);
+            @include border($primary, $primary, 2px, 1rem, $white);
+            padding: .8rem;
+            text-transform: capitalize;
+        }
+    }
+
+    &__filter {
+        width: 100%;
+        & select {
+            @include border($primary, $secondary, 2px, 1rem, $white);
+            font-size: 1rem;
+            width: 40%;
+            padding: .6rem;
+        }
     }
 }
 

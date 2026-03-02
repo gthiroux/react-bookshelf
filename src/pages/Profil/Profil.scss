@@ -1,0 +1,43 @@
+@use "../../style/abstract/shared"as *;
+
+.header {
+    @include margin (2rem, 2rem);
+    @include flex(column, start, start);
+    width: 50%;
+    justify-self: center;
+
+    &__search {
+        @include flex(row, start, start, 1rem);
+        width: 100%;
+
+        & input {
+            @include border($primary, none, 2px, 1rem);
+            width: 80%;
+            padding: .6rem;
+        }
+
+        & button {
+            @include padding(.8rem, .8rem, 1.6rem, 1.6rem);
+            @include border($primary, $primary, 2px, 1rem, $white);
+            padding: .8rem;
+            text-transform: capitalize;
+        }
+    }
+
+    &__filter {
+        width: 100%;
+
+        & select {
+            @include border($primary, $secondary, 2px, 1rem, $white);
+            font-size: 1rem;
+            width: 40%;
+            padding: .6rem;
+        }
+    }
+}
+
+.bookList {
+    @include flex(column, center, center);
+    width: 100%;
+    height: auto;
+}

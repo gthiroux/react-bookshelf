@@ -33,23 +33,23 @@ Chaque livre possède les propriétés suivantes :
 ### Page Accueil
 
 - Afficher la liste complète des livres (check)
-- Filtrer les livres par genre (select ou boutons)
-- Rechercher un livre par son nom (barre de recherche)
+- Filtrer les livres par genre (select ou boutons) (check)
+- Rechercher un livre par son nom (barre de recherche)(check)
 - Pouvoir ajouter/retirer un livre des favoris (check)
 - Pouvoir liker un livre (check)
 
 ### Page Profile
 
 - Afficher uniquement les livres marqués en favoris (check)
-- Filtrer les favoris par genre
-- Rechercher parmi les favoris par nom
+- Filtrer les favoris par genre(check)
+- Rechercher parmi les favoris par nom(check)
 - Pouvoir retirer un livre des favoris (check)
 
 ## Contraintes techniques
 
 - Utiliser React Router pour la navigation (check)
 - Utiliser `useState` pour la gestion de l'état (check)
-- Les filtres (genre + recherche) doivent pouvoir se combiner
+- Les filtres (genre + recherche) doivent pouvoir se combiner (check)
 
 ## Données de test (check)
 
@@ -141,9 +141,9 @@ Sauvegarder la liste des favoris dans le `localStorage` pour qu'elle persiste ap
 
 - [x] Les deux routes fonctionnent correctement
 - [x] L'affichage des livres est fonctionnel
-- [ ] Le filtre par genre fonctionne
-- [ ] La recherche par nom fonctionne
-- [ ] Les filtres se combinent correctement
+- [x] Le filtre par genre fonctionne
+- [x] La recherche par nom fonctionne
+- [x] Les filtres se combinent correctement
 - [x] L'ajout/retrait des favoris fonctionne
 - [x] Le code est propre et organisé en composants
 

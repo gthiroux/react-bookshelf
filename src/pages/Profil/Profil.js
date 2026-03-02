@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Card from "../../components/Card/Card";
 import Header from "../../components/Header/Header";
+import "./Profil.scss";
 
 const Profil = ({ favoriteBook, setFavoriteBook, like, onLike }) => {
   const typeList = [];
@@ -70,31 +71,34 @@ const Profil = ({ favoriteBook, setFavoriteBook, like, onLike }) => {
   return (
     <div classtitle="Profil">
       <Header />
-      <form className="search" onSubmit={handleSearch}>
-        <input
-          type="search"
-          id="search"
-          name="q"
-          placeholder="Rechercher votre livre"
-          onChange={(e) => {
-            setSearchWord(e.target.value);
-            if (e.target.value === "") {
-              setSearchList([]);
-              setHasSearched(false);
-            }
-          }}
-        ></input>
-        <button type="submit"> Rechercher</button>
-      </form>
-
-      <select name="selectType" onChange={handleType}>
-        <option value="">Filtrer selon le genre ...</option>
-        {typeList.map((type) => (
-          <option key={type} value={type}>
-            {type}
-          </option>
-        ))}
-      </select>
+      <div className="header">
+        <form className="header__search" onSubmit={handleSearch}>
+          <input
+            type="search"
+            id="search"
+            name="q"
+            placeholder="Rechercher votre livre"
+            onChange={(e) => {
+              setSearchWord(e.target.value);
+              if (e.target.value === "") {
+                setSearchList([]);
+                setHasSearched(false);
+              }
+            }}
+          ></input>
+          <button type="submit"> Rechercher</button>
+        </form>
+        <div className="header__filter">
+          <select name="selectType" onChange={handleType}>
+            <option value="">Filtrer selon le genre ...</option>
+            {typeList.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
       <div className="bookList">
         {favoriteBook.length === 0
           ? "Pas encore de favoris !"
