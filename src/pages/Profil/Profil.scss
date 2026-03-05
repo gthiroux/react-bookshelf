@@ -1,25 +1,27 @@
 @use "../../style/abstract/shared"as *;
 
+
+
 .header {
-    @include margin (2rem, 2rem);
+    @include margin ($l-space, $l-space);
     @include flex(column, start, start);
     width: 50%;
     justify-self: center;
+    gap: $s-space;
 
     &__search {
-        @include flex(row, start, start, 1rem);
+        @include flex(row, start, start, $s-space);
         width: 100%;
 
         & input {
-            @include border($primary, none, 2px, 1rem);
+            @include border($primary, none, 2px, $s-space);
             width: 80%;
             padding: .6rem;
         }
 
         & button {
-            @include padding(.8rem, .8rem, 1.6rem, 1.6rem);
-            @include border($primary, $primary, 2px, 1rem, $white);
-            padding: .8rem;
+            @include padding(.6rem, .6rem, 1.6rem, 1.6rem);
+            @include border($primary, $primary, 2px, $s-space, $white);
             text-transform: capitalize;
         }
     }
@@ -28,10 +30,14 @@
         width: 100%;
 
         & select {
-            @include border($primary, $secondary, 2px, 1rem, $white);
-            font-size: 1rem;
+            @include border($primary, $secondary, 2px, $s-space, $white);
+            font-size: $s-space;
             width: 40%;
             padding: .6rem;
+
+            @include tablette {
+                width: 100%;
+            }
         }
     }
 }

@@ -1,0 +1,12 @@
+@use "../../style/abstract/shared"as *;
+
+.Parameter {
+    height: 100vh;
+}
+
+.form {
+    width: 100%;
+    @include marge($s-space, $s-space);
+    @include flex(row, start, center, $s-space);
+
+}

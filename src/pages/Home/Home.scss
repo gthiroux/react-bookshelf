@@ -2,24 +2,24 @@
 
 .header {
     width: 50%;
-    margin-top: 2rem;
+    margin-top: $l-space;
     justify-self: center;
     @include flex(column, start, start);
 
     &__search {
         width: 100%;
-        @include flex(row, start, start, 1rem);
+        @include flex(row, start, start, $s-space);
 
-        // @include margin(2rem);
+        // @include margin($l-space);
         & input {
-            @include border($primary, none, 2px, 1rem);
+            @include border($primary, none, 2px, $s-space);
             width: 80%;
             padding: .6rem;
         }
 
         & button {
             @include padding(.8rem, .8rem, 1.6rem, 1.6rem);
-            @include border($primary, $primary, 2px, 1rem, $white);
+            @include border($primary, $primary, 2px, $s-space, $white);
             padding: .8rem;
             text-transform: capitalize;
         }
@@ -28,8 +28,8 @@
     &__filter {
         width: 100%;
         & select {
-            @include border($primary, $secondary, 2px, 1rem, $white);
-            font-size: 1rem;
+            @include border($primary, $secondary, 2px, $s-space, $white);
+            font-size: $s-space;
             width: 40%;
             padding: .6rem;
         }

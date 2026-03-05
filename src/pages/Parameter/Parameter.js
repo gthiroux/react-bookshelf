@@ -7,13 +7,20 @@ const Parameter = ({ theme, setTheme }) => {
   return (
     <div className="Parameter">
       <Header />
-      <input
-        type="checkbox"
-        id="theme"
-        onClick={handleTheme}
-        checked={theme === "sombre"}
-      />
-      <label htmlFor="theme"> Mode sombre</label>
+      <h1> Bienvenue dans tes paramètres !</h1>
+      <form className="form">
+        <input
+          className="form__checkbox "
+          type="checkbox"
+          id="theme"
+          onClick={handleTheme}
+          checked={theme === "sombre"}
+        />
+        <label className="form__label" htmlFor="theme">
+          {" "}
+          Mode sombre
+        </label>{" "}
+      </form>
     </div>
   );
 };

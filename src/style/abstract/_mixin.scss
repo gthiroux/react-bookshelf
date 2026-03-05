@@ -56,3 +56,17 @@
     border-radius: $radius;
     color: $color;
 }
+
+@mixin tablette {
+    @media screen and (max-width:1000px) {
+        @content;
+    }
+}
+
+@mixin tel {
+    @media screen and (max-width:400px) {
+        @content;
+    }
+
+
+}

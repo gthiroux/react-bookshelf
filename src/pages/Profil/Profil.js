@@ -69,6 +69,7 @@ const Profil = ({ setFavoriteBook, like, onLike }) => {
     );
   });
 
+  //? Display on the Profil's Page
   return (
     <div classtitle="Profil">
       <Header />
@@ -100,6 +101,8 @@ const Profil = ({ setFavoriteBook, like, onLike }) => {
           </select>
         </div>
       </div>
+      <h1>Bienvenue dans tes favoris !</h1>
+
       <div className="bookList">
         {favoriteBook.length === 0
           ? "Pas encore de favoris !"

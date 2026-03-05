@@ -1,14 +1,43 @@
 @use "./abstract/shared"as *;
 
+:root {
+  color-scheme: light dark;
+  --light: #F2F0F8;
+  --dark: #232323;
+}
+
 * {
   @include reset();
 }
 
+h1 {
+  justify-self: center;
+}
+
 body {
   @include typo-body();
-  background: $background;
 }
 
 code {
   @include typo-code();
+}
+
+.sombre {
+  color-scheme: dark;
+  background: var(--dark);
+  color: var(--light);
+
+  & h1 {
+    color: $secondary;
+  }
+}
+
+.clair {
+  color-scheme: light;
+  background: var(--light);
+  color: var(--dark);
+
+  & h1 {
+    color: $primary;
+  }
 }

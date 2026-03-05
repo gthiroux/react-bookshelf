@@ -2,12 +2,12 @@
 
 .Header nav {
     @include flex(row, space-around, start, 0);
-    @include marge(0, 1rem);
-    @include margin(0, 1rem);
+    @include marge(0, $s-space);
+    @include margin(0, $s-space);
     width: 100%;
     height: 5rem;
     background-color: $primary;
-    box-shadow: 4px 4px 1rem $primary;
+    box-shadow: 4px 4px $s-space $primary;
 
 
     & a {
