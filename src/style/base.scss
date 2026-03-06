@@ -30,6 +30,10 @@ code {
   & h1 {
     color: $secondary;
   }
+
+  & input::placeholder {
+    color: var(--light);
+  }
 }
 
 .clair {
@@ -39,5 +43,9 @@ code {
 
   & h1 {
     color: $primary;
+  }
+
+  & input::placeholder {
+    color: $black;
   }
 }

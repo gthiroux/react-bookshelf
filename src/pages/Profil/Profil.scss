@@ -31,6 +31,7 @@
 
         & select {
             @include border($primary, $secondary, 2px, $s-space, $white);
+            color: $black;
             font-size: $s-space;
             width: 40%;
             padding: .6rem;

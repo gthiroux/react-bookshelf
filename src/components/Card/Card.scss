@@ -1,5 +1,10 @@
 @use "../../style/abstract/shared"as *;
 
+p,
+.Card__like {
+    color: $black;
+}
+
 .Card {
     width: 60%;
     height: auto;
